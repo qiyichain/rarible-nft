@@ -1,0 +1,9 @@
+{
+	"extends": ["@rarible/ts"],
+	"rules": {
+		"object-curly-spacing": ["error", "always"]
+	},
+    "globals":{
+      "BigInt": true
+    }
+}

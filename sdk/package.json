@@ -1,0 +1,78 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap && lerna link",
+    "clean": "lerna run clean --parallel",
+    "build": "yarn bootstrap && yarn clean && yarn build-all",
+    "build-solana-common": "yarn workspace @rarible/solana-common run build",
+    "build-solana-wallet": "yarn workspace @rarible/solana-wallet run build",
+    "build-solana-sdk": "yarn workspace @rarible/solana-sdk run build",
+    "build-sdk": "yarn workspace @rarible/sdk run build",
+    "build-sdk-transaction": "yarn workspace @rarible/sdk-transaction run build",
+    "build-sdk-transaction-backend": "yarn workspace @rarible/sdk-transaction-backend run build",
+    "build-sdk-wallet": "yarn workspace @rarible/sdk-wallet run build",
+    "build-connector": "yarn workspace @rarible/connector run build",
+    "build-connector-helper": "yarn workspace @rarible/connector-helper run build",
+    "build-connector-iframe": "yarn workspace @rarible/connector-iframe run build",
+    "build-connector-fcl": "yarn workspace @rarible/connector-fcl run build",
+    "build-connector-beacon": "yarn workspace @rarible/connector-beacon run build",
+    "build-connector-mew": "yarn workspace @rarible/connector-mew run build",
+    "build-connector-fortmatic": "yarn workspace @rarible/connector-fortmatic run build",
+    "build-connector-portis": "yarn workspace @rarible/connector-portis run build",
+    "build-connector-torus": "yarn workspace @rarible/connector-torus run build",
+    "build-connector-walletlink": "yarn workspace @rarible/connector-walletlink run build",
+    "build-connector-walletconnect": "yarn workspace @rarible/connector-walletconnect run build",
+    "build-connector-phantom": "yarn workspace @rarible/connector-phantom run build",
+    "build-connector-solflare": "yarn workspace @rarible/connector-solflare run build",
+    "build-sdk-examples": "yarn workspace @rarible/sdk-examples run build",
+    "build-all": "sh ./scripts/build.sh",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx . --fix",
+    "prettify:packages": "lerna exec -- sort-package-json && sort-package-json",
+    "prettify": "run-s prettify:*",
+    "test": "lerna run test --parallel",
+    "verify": "lerna run verify --parallel",
+    "lint-staged": "lint-staged",
+    "precommit": "run-s verify lint",
+    "prepare": "husky install",
+    "release": "lerna publish from-package",
+    "update:rarible": "lerna exec -- ncu -u @rarible/* && ncu -u @rarible/* && yarn bootstrap",
+    "publish-all": "lerna publish from-package",
+    "e2e-tests": "sh ./scripts/e2e.sh"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "**/src/package.json": [
+      "yarn run prettify:packages"
+    ],
+    "package.json": [
+      "yarn run prettify:packages"
+    ]
+  },
+  "resolutions": {
+    "@rarible/types": "0.9.3",
+    "**/axios": "^0.26.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@rarible/eslint-config-ts": "~0.5.0",
+    "eslint": "^7.32.0",
+    "husky": "^7.0.4",
+    "lerna": "^4.0.0",
+    "lint-staged": "^10.4.0",
+    "npm-check-updates": "^11.5.13",
+    "npm-run-all": "^4.1.5",
+    "sort-package-json": "^1.52.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.2"
+  }
+}

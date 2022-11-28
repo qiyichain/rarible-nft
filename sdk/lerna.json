@@ -1,0 +1,21 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "version": "0.9.13",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "allowBranch": [
+        "master",
+        "fix/*",
+        "beta/*"
+      ],
+      "conventionalCommits": true,
+      "registry": "https://registry.npmjs.org/",
+      "message": "chore: bump versions after release",
+      "yes": true
+    }
+  }
+}
