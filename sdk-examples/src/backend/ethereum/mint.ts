@@ -1,6 +1,8 @@
-import { createRaribleSdk } from "@rarible/sdk/src"
+// import { createRaribleSdk } from "@rarible/sdk/src"
+import { createRaribleSdk } from "@rarible/sdk"
+import { MintType } from "@rarible/sdk/build/types/nft/mint/prepare"
 import { toCollectionId } from "@rarible/types"
-import { MintType } from "@rarible/sdk/build/types/nft/mint/domain"
+// import { MintType } from "@rarible/sdk/build/types/nft/mint/domain"
 import { initWalletWeb3, updateNodeGlobalVars } from "../common"
 
 updateNodeGlobalVars()
